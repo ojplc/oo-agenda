@@ -6,7 +6,7 @@ Aluno1 = Aluno("Divo", 333, 99961)
 
 print(Aluno1.permissao())
 
-Professor1 = Professor("alan",334,1192)
+Professor1 = Professor("Alan",334,1192)
 
 print(Professor1.permissao())
 
