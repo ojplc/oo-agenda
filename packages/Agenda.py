@@ -23,83 +23,97 @@ class Agenda:
         
         atributos = {"1": nome_evento, "2" : data_evento, "3" : horario_start, "4" : horario_finish, "5" : quantidade_vagas}
 
-        while nome_evento == None:
-            print("\nQual será o nome do evento?")
-            sleep(0.5)
-            nome_evento = str(input("> "))
+        novo_evento = None
+        while novo_evento == None:
+            while atributos["1"] == None:
+                print("\nQual será o nome do evento?")
+                sleep(0.5)
+                atributos["1"] = str(input("> "))
 
-        while data_evento == None:
-            print("\nQual será a data do evento? (use o formato DD/MM/AAAA)")
-            sleep(0.5)
-            data_evento = str(input("> "))
-            dia,mes,ano = data_evento.split("/")
-            try:
-                datetime(int(ano), int(mes), int(dia))
-            except ValueError:
-                print("Data inválida, insira um valor válido")
-                sleep(2)
-                data_evento = None
-        
-        while horario_start == None:
-            print("\nQue horas começará o evento? (use o formato HH:MM)")
-            sleep(0.5)
-            horario_start = str(input("> "))
-            try:
-                hs = datetime.strptime(horario_start, "%H:%M")
-            except:
-                print("Horário inválido, insira um valor válido")
-                sleep(2)
-                horario_start = None
+            while atributos["2"] == None:
+                print("\nQual será a data do evento? (use o formato DD/MM/AAAA)")
+                sleep(0.5)
+                atributos["2"] = str(input("> "))
+                dia,mes,ano = atributos["2"].split("/")
+                dia = int(dia)
+                mes = int(mes)
+                ano = int(ano)
+                try:
+                    datetime(int(ano), int(mes), int(dia))
+                except ValueError:
+                    print("Data inválida, insira um valor válido")
+                    sleep(2)
+                    atributos["2"] = None
+            
+            while atributos["3"] == None:
+                print("\nQue horas começará o evento? (use o formato HH:MM)")
+                sleep(0.5)
+                atributos["3"] = str(input("> "))
+                try:
+                    hs = datetime.strptime(atributos["3"], "%H:%M")
+                except:
+                    print("Horário inválido, insira um valor válido")
+                    sleep(2)
+                    atributos["3"] = None
+            #ACESCENTAR UM CHECK SE O TEMPO DE COMEÇO É ANTES DO DE TÉRMINO
 
-        while horario_finish == None:
-            print("\nQue horas terminará o evento? (use o formato HH:MM)")
-            horario_finish = str(input("> "))
-            try:
-                hs = datetime.strptime(horario_finish, "%H:%M")
-            except:
-                print("Horário inválido, insira um valor válido")
-                sleep(2)
-                horario_finish = None
-        
-        while quantidade_vagas == None:
-            print("\nQuantas vagas estarão disponíveis para o evento?")
-            quantidade_vagas = int(input("> "))
+            while atributos["4"] == None:
+                print("\nQue horas terminará o evento? (use o formato HH:MM)")
+                atributos["4"] = str(input("> "))
+                try:
+                    hf = datetime.strptime(atributos["4"], "%H:%M")
+                except:
+                    print("Horário inválido, insira um valor válido")
+                    sleep(2)
+                    atributos["4"] = None
+            
+            while atributos["5"] == None:
+                print("\nQuantas vagas estarão disponíveis para o evento?")
+                atributos["5"] = int(input("> "))
 
-        confirmacao = None
-        novo_evento = Evento(nome_evento, dia, mes, ano, horario_start, horario_finish, quantidade_vagas)
-        while confirmacao == False:
-            print(f"\nO evento chamado '{novo_evento.titulo}' será adicionado ao sistema")
-            print(f"Ele ocorrerá {novo_evento.dias_da_semana[novo_evento.date.weekday()]} dia {novo_evento.date.day}")
-            print(f"Tendo uma duração de {str(novo_evento.duracao)[:-3]}") #remove os segundos
-            print("\nConfirma a operação?\n")
-            print("1. Adicionar evento")
-            print("2. Editar informção\n")
-            confirmacao = str(input("> "))
-            if confirmacao == "1":
-                self.eventos.append(novo_evento)
-                print("Evento adicionado com sucesso")
-            elif confirmacao == "2":
-                alterar = None
-                while alterar == None:
-                    print("Qual informação você gostaria de alterar?")
-                    print("\n1. Nome do evento")
-                    print("\n2. Data do evento")
-                    print("\n3. Horário de começo")
-                    print("\n4. Horário de término")
-                    print("\n5. Quantidade de vagas")
-                    alterar = int(input("> "))
-                    if alterar <= len(atributos) + 1 and alterar > 0:
-                        atributos[alterar] = None
-                    else:
-                        print()
-                        print("Insira um valor válido")
-                        alterar = None
-                break
-            else:
-                print("Insira um valor válido")
-                confirmacao = None
+            confirmacao = None
+            novo_evento = Evento(atributos["1"], dia, mes, ano, atributos["3"], atributos["4"], atributos["5"])
+            while confirmacao == None:
+                print(f"\nO evento chamado '{novo_evento.titulo}' será adicionado ao sistema")
+                sleep(0.5)
+                print(f"Ele ocorrerá {novo_evento.dias_da_semana[novo_evento.date.weekday()]} dia {novo_evento.date.day}")
+                sleep(0.5)
+                print(f"Tendo uma duração de {str(novo_evento.duracao)[:-3]}") #remove os segundos
+                sleep(0.5)
+                print("\nConfirma a operação?\n")
+                sleep(0.5)
+                print("1. Adicionar evento")
+                print("2. Editar informção\n")
+                confirmacao = str(input("> "))
+                if confirmacao == "1":
+                    self.eventos.append(novo_evento)
+                    print("Evento adicionado com sucesso\n")
+                    sleep(1)
+                elif confirmacao == "2":
+                    novo_evento = None
                     
+                    alterar = None #mantem o loop em menu ate um valor correto ser colocado
                     
+                    while alterar == None:
+                        print("Qual informação você gostaria de alterar?")
+                        print("\n1. Nome do evento")
+                        print("\n2. Data do evento")
+                        print("\n3. Horário de começo")
+                        print("\n4. Horário de término")
+                        print("\n5. Quantidade de vagas\n")
+                        alterar = int(input("> "))
+                        if alterar <= len(atributos) + 1 and alterar > 0:
+                            atributos[str(alterar)] = None
+                        else:
+                            print()
+                            print("Insira um valor válido")
+                            alterar = None
+                    break
+                else:
+                    print("Insira um valor válido")
+                    confirmacao = None
+                        
+                        
 
 
 

@@ -10,5 +10,3 @@ Professor1 = Professor("Alan",334,1192)
 
 print(Professor1.permissao())
 
-
-agenda0 = Agenda(Professor1)
