@@ -17,8 +17,15 @@ class BancoDados:
     
     def verificar_matricula(self, matricula): #retorna true se já existe
         for objeto in self.__objetos:
-            if matricula == objeto["matricula"]:
+            if matricula == objeto['_matricula']:
                 return True
+        return False
+    
+    def login(self, matricula, contato):
+        for objeto in self.__objetos:
+            if matricula == objeto['_matricula']:
+                if contato == objeto['_contato']:
+                    return True
         return False
     
     def write(self, objeto):
@@ -34,4 +41,10 @@ class BancoDados:
 
     def get_objetos(self):
         return self.__objetos
+    
+    def get_objeto(self, matricula):
+        for objeto in self.__objetos:
+            if matricula == objeto['_matricula']:
+                return objeto
+        return None
                 

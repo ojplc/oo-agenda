@@ -20,6 +20,7 @@ class Agenda:
         self._nome_usuario = nome_usuario
         self.menu()
     
+    
 
     def criar_evento(self): #trabalhando aqui
         nome_evento = None
@@ -217,7 +218,7 @@ class Agenda:
             print(f"Bem vindo a agenda {self._nome_usuario}, o que você gostaria de fazer?\n")
             print("1. Criar evento") #doing
             print("2. Adicionar usuário") 
-            print("3. Cadastrar  em um evento\n") #todo
+            print("3. Cadastrar-se em um evento\n") #todo
             escolha = input("> ")
             if escolha == "1":
                 self.criar_evento()
