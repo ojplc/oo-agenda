@@ -20,7 +20,7 @@ class Agenda:
         self._nome_usuario = nome_usuario
         self.menu()
     
-    
+
 
     def criar_evento(self): #trabalhando aqui
         nome_evento = None
@@ -83,19 +83,15 @@ class Agenda:
             novo_evento = Evento(atributos["1"], dia, mes, ano, atributos["3"], atributos["4"], atributos["5"])
             while confirmacao == None:
                 print(f"\nO evento chamado '{novo_evento.titulo}' será adicionado ao sistema")
-                sleep(0.5)
                 print(f"Ele ocorrerá {novo_evento.dias_da_semana[novo_evento.date.weekday()]} dia {novo_evento.date.day}")
-                sleep(0.5)
                 print(f"Tendo uma duração de {str(novo_evento.duracao)[:-3]}") #remove os segundos
-                sleep(0.5)
                 print("\nConfirma a operação?\n")
-                sleep(0.5)
                 print("1. Adicionar evento")
                 print("2. Editar informção\n")
                 confirmacao = str(input("> "))
                 if confirmacao == "1":
                     self.eventos.append(novo_evento)
-                    print("Evento adicionado com sucesso!\n")
+                    print("\nEvento adicionado com sucesso!\n")
                     sleep(1)
                 elif confirmacao == "2":
                     novo_evento = None
@@ -177,7 +173,7 @@ class Agenda:
                         if atributos["cargo"] == "2":
                             self.__banco_professores.write(new_user)
 
-                        print("Novo usuário cadastrado com sucesso!\n")
+                        print("\nNovo usuário cadastrado com sucesso!\n")
                         sleep(1)
                     elif confirmacao == "2":
                         alterar = None
@@ -203,6 +199,7 @@ class Agenda:
               
         else:
             print("Usuário não tem as permissões necessárias")
+            sleep(1)
             
 
 
@@ -215,7 +212,7 @@ class Agenda:
     def menu(self):
         escolha = 0
         while escolha == 0:
-            print(f"Bem vindo a agenda {self._nome_usuario}, o que você gostaria de fazer?\n")
+            print(f"\nBem vindo a agenda {self._nome_usuario}, o que você gostaria de fazer?\n")
             print("1. Criar evento") #doing
             print("2. Adicionar usuário") 
             print("3. Cadastrar-se em um evento\n") #todo
@@ -231,6 +228,8 @@ class Agenda:
                 pass
             elif escolha == 4:
                 print("Até breve")
+
+                #adicionar area de interesse tambem
             else:
                 print("opção inválida\n")
                 escolha = 0

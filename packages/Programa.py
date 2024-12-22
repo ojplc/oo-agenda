@@ -24,11 +24,11 @@ class Programa:
         login_matricula = None
         login_contato = None
 
-        print("Bem vindo a agenda")
+        print("Bem vindo a agenda\n")
         while login_matricula == None:
-            print("Insira sua matrícula para prosseguir\n")
+            print("Insira sua matrícula para prosseguir")
             login_matricula = str(input("> "))
-            print("Agora insira seu contato para prosseguir\n")
+            print("\nAgora insira seu contato para prosseguir")
             login_contato = str(input("> "))
 
             if self.__banco_professores.login(login_matricula, login_contato):
@@ -39,5 +39,6 @@ class Programa:
                 usuario = self.__banco_alunos.get_objeto(login_matricula)
                 self.user_atual = Aluno(usuario['_nome'], usuario['_matricula'], usuario['_contato'])
             else:
-                print("Informações inválidas")
+                print("\nInformações inválidas\n")
+                sleep(1)
                 login_matricula = None
