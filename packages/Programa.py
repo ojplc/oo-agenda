@@ -7,7 +7,6 @@ class Programa:
     def __init__(self, user_atual):
         self.__banco_alunos = BancoDados("banco alunos.json")
         self.__banco_professores = BancoDados("banco professores.json")
-        self.banco_eventos = BancoDados("banco eventos.json")
 
         self.user_atual = user_atual
         if not isinstance(user_atual, (Aluno, Professor)):

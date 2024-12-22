@@ -3,6 +3,7 @@ from packages.Professor import Professor
 from time import sleep
 from packages.Evento import Evento
 from datetime import datetime
+from packages.controllers.SerialFuntion import BancoDados
 
 #começar a ver serialização agora para poder serializar os eventos
 #para que exista eventos para cadastrar
@@ -10,8 +11,10 @@ from datetime import datetime
 #todo: fazer o comentario em criar_evento
 class Agenda:
     def __init__(self, permissao, nome_usuario):
+        self.__banco_alunos = BancoDados("banco alunos.json")
+        self.__banco_professores = BancoDados("banco professores.json")
+        self.banco_eventos = BancoDados("banco eventos.json")
         self.eventos = []
-        self.pessoas = []
         self.canal = None #adicionar canal
         self.__permissao = permissao
         self._nome_usuario = nome_usuario
@@ -166,7 +169,13 @@ class Agenda:
                     confirmacao = input("> ")
                     if confirmacao == "1":
                         new_user = atribuicao.get(atributos["cargo"])(atributos["nome"],atributos["matricula"],atributos["contato"])
-                        self.pessoas.append(new_user)
+                        
+                        if atributos["cargo"] == "1":
+                            self.__banco_alunos.write(new_user)
+                        
+                        if atributos["cargo"] == "2":
+                            self.__banco_professores.write(new_user)
+
                         print("Novo usuário cadastrado com sucesso!\n")
                         sleep(1)
                     elif confirmacao == "2":
