@@ -1,9 +1,14 @@
 from packages.Agenda import Agenda
 from packages.Aluno import Aluno
 from packages.Professor import Professor
+from packages.controllers.SerialFuntion import BancoDados
 
 class Programa:
     def __init__(self, user_atual):
+        self.__banco_alunos = BancoDados("banco alunos.json")
+        self.__banco_professores = BancoDados("banco professores.json")
+        self.banco_eventos = BancoDados("banco eventos.json")
+
         self.user_atual = user_atual
         if not isinstance(user_atual, (Aluno, Professor)):
             raise ValueError("usuario_atual deve ser uma instância de Aluno ou Professor")

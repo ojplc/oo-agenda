@@ -4,6 +4,10 @@ from time import sleep
 from packages.Evento import Evento
 from datetime import datetime
 
+#começar a ver serialização agora para poder serializar os eventos
+#para que exista eventos para cadastrar
+
+#todo: fazer o comentario em criar_evento
 class Agenda:
     def __init__(self, permissao, nome_usuario):
         self.eventos = []
@@ -87,7 +91,7 @@ class Agenda:
                 confirmacao = str(input("> "))
                 if confirmacao == "1":
                     self.eventos.append(novo_evento)
-                    print("Evento adicionado com sucesso\n")
+                    print("Evento adicionado com sucesso!\n")
                     sleep(1)
                 elif confirmacao == "2":
                     novo_evento = None
@@ -204,7 +208,7 @@ class Agenda:
             print(f"Bem vindo a agenda {self._nome_usuario}, o que você gostaria de fazer?\n")
             print("1. Criar evento") #doing
             print("2. Adicionar usuário") 
-            print("3. Cadastrar evento\n") #todo
+            print("3. Cadastrar  em um evento\n") #todo
             escolha = input("> ")
             if escolha == "1":
                 self.criar_evento()
