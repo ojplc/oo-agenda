@@ -14,7 +14,6 @@ class Agenda:
         self.__banco_alunos = BancoDados("banco alunos.json")
         self.__banco_professores = BancoDados("banco professores.json")
         self.banco_eventos = BancoDados("banco eventos.json")
-        self.eventos = []
         self.canal = None #adicionar canal
         self.__permissao = permissao
         self._nome_usuario = nome_usuario
@@ -42,11 +41,11 @@ class Agenda:
                 print("\nQual será a data do evento? (use o formato DD/MM/AAAA)")
                 sleep(0.5)
                 atributos["2"] = str(input("> "))
-                dia,mes,ano = atributos["2"].split("/")
-                dia = int(dia)
-                mes = int(mes)
-                ano = int(ano)
                 try:
+                    dia,mes,ano = atributos["2"].split("/")
+                    dia = int(dia)
+                    mes = int(mes)
+                    ano = int(ano)
                     datetime(int(ano), int(mes), int(dia))
                 except ValueError:
                     print("Data inválida, insira um valor válido")
@@ -83,16 +82,17 @@ class Agenda:
             novo_evento = Evento(atributos["1"], dia, mes, ano, atributos["3"], atributos["4"], atributos["5"])
             while confirmacao == None:
                 print(f"\nO evento chamado '{novo_evento.titulo}' será adicionado ao sistema")
-                print(f"Ele ocorrerá {novo_evento.dias_da_semana[novo_evento.date.weekday()]} dia {novo_evento.date.day}")
-                print(f"Tendo uma duração de {str(novo_evento.duracao)[:-3]}") #remove os segundos
+                print(f"Ele ocorrerá {novo_evento.dia_evento()} dia {novo_evento.dia}")
+                print(f"Tendo uma duração de {novo_evento.calcular_duracao()}")
                 print("\nConfirma a operação?\n")
                 print("1. Adicionar evento")
                 print("2. Editar informção\n")
                 confirmacao = str(input("> "))
+                #evneto adicionado
                 if confirmacao == "1":
-                    self.eventos.append(novo_evento)
-                    print("\nEvento adicionado com sucesso!\n")
+                    self.banco_eventos.write(novo_evento)
                     sleep(1)
+                #trocar alguma informação
                 elif confirmacao == "2":
                     novo_evento = None
                     
@@ -115,6 +115,7 @@ class Agenda:
                     break
                 else:
                     print("Insira um valor válido")
+                    sleep(1)
                     confirmacao = None
                         
                         
@@ -173,7 +174,6 @@ class Agenda:
                         if atributos["cargo"] == "2":
                             self.__banco_professores.write(new_user)
 
-                        print("\nNovo usuário cadastrado com sucesso!\n")
                         sleep(1)
                     elif confirmacao == "2":
                         alterar = None
@@ -207,7 +207,16 @@ class Agenda:
         return self.__permissao
 
     def cadastrar_evento(self):
-        pass
+        print("Os eventos disponíveis são:\n")
+        cadastrado = False
+        while not cadastrado:
+            contagem = 1
+            for eventos_criados in self.banco_eventos.get_objetos():
+                print(f"{contagem}. {eventos_criados['titulo']}\n")
+                contagem += 1
+            print("Qual evento você gostaria de se cadastrar?")
+            escolha = input("> ")
+
 
     def menu(self):
         escolha = 0
@@ -220,12 +229,15 @@ class Agenda:
             if escolha == "1":
                 self.criar_evento()
                 escolha = 0
+
             elif escolha == "2":
                 self.criar_pessoa()
                 escolha = 0
 
             elif escolha == "3":
-                pass
+                self.cadastrar_evento()
+                escolha = 0
+
             elif escolha == 4:
                 print("Até breve")
 

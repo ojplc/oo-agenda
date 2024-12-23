@@ -1,7 +1,7 @@
 [
     {
-        "_nome": "admin",
-        "_matricula": "000001",
+        "_nome": "administrador",
+        "_matricula": "01",
         "_contato": "admin",
         "_area": [],
         "_permissao": true
