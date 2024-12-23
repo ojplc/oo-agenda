@@ -6,9 +6,10 @@ class Evento:
         self.ano,self.mes,self.dia = [ano, mes, dia]
         self.start_hour = shoras
         self.finish_hour = fhoras
+        self.numero_vagas = numero_vagas
         self.area = []
         self.participantes = []
-        self.numero_vagas = numero_vagas
+
 
         
     def calcular_duracao(self):
@@ -27,7 +28,7 @@ class Evento:
         return dias_da_semana[datetime(self.ano, self.mes, self.dia).weekday()]
 
     def __str__(self):
-        return f"O evento '{self.titulo}' ocorrerá {self.dia_evento()} dia {self.dia},\n começa às {self.start_hour} terá duração de {str(self.calcular_duracao())[:-3]} "
+        return f"O evento '{self.titulo}' ocorrerá {self.dia_evento()} dia {self.dia},\ne começa às {self.start_hour} terá duração de {str(self.calcular_duracao())[:-3]} "
 
 
 

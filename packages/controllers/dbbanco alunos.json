@@ -3,14 +3,7 @@
         "_nome": "João Pedro Lopes da Cruz",
         "_matricula": "241011170",
         "_contato": "241011170@aluno.unb.br",
-        "_area": [],
-        "_permissao": false
-    },
-    {
-        "_nome": "Luis",
-        "_matricula": "2410150",
-        "_contato": "2410150@aluno.unb.br",
-        "_area": [],
-        "_permissao": false
+        "area": [],
+        "_Aluno__permissao": false
     }
 ]

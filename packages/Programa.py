@@ -18,7 +18,7 @@ class Programa:
         self.iniciar_agenda()
 
     def iniciar_agenda(self):
-        self.sessao = Agenda(permissao = self.user_atual.permissao(), nome_usuario = self.user_atual.nome)
+        self.sessao = Agenda(self.user_atual)
         
     def login_menu(self):
         login_matricula = None

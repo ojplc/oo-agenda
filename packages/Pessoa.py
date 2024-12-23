@@ -19,7 +19,7 @@ class Pessoa(ABC):
     
     @property
     @abstractmethod
-    def area(self):
+    def areas(self):
         pass
 
    

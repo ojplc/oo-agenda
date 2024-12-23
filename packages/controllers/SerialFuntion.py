@@ -30,7 +30,8 @@ class BancoDados:
     def get_objetos(self):
         return self.__objetos
     
-
+    def atualizar_objeto(self,novo_objeto, index):
+        self.__objetos[int(index)] = vars(novo_objeto)
 
 
 

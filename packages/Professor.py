@@ -3,14 +3,14 @@ from packages.Pessoa import Pessoa
 
 class Professor(Pessoa):
     def __init__(self, nome, matricula, contato):
-        self._nome = nome
-        self._matricula = matricula
+        self.nome = nome
+        self.matricula = matricula
         self._contato = contato
-        self._area = []
-        self._permissao = True
+        self.area = []
+        self.__permissao = True
 
     @property
-    def area(self):
+    def areas(self):
         return (f"suas areas de interesse são {self.area}")
 
     def adicionar_area(self, interesse):
@@ -19,4 +19,4 @@ class Professor(Pessoa):
 
 
     def permissao(self):
-        return self._permissao
+        return self.__permissao

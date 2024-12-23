@@ -10,13 +10,13 @@ from packages.controllers.SerialFuntion import BancoDados
 
 #todo: fazer o comentario em criar_evento
 class Agenda:
-    def __init__(self, permissao, nome_usuario):
+    def __init__(self, usuario_atual):
         self.__banco_alunos = BancoDados("banco alunos.json")
         self.__banco_professores = BancoDados("banco professores.json")
         self.banco_eventos = BancoDados("banco eventos.json")
         self.canal = None #adicionar canal
-        self.__permissao = permissao
-        self._nome_usuario = nome_usuario
+        self.__permissao = usuario_atual.permissao()
+        self._nome_usuario = usuario_atual.nome
         self.menu()
     
 
@@ -153,6 +153,10 @@ class Agenda:
                 while atributos["matricula"] == None:
                     print("\nQual a matrícula do usuário?")
                     atributos["matricula"] = str(input("> "))
+                    if self.__banco_alunos.verificar_matricula(atributos["matricula"]) or self.__banco_professores.verificar_matricula(atributos["matricula"]):
+                        print("\nEssa matricula já está cadastrada no sistema!!\n")
+                        sleep(2)
+                        atributos["matricula"] == None
                 
                 while atributos["contato"] == None:
                     print("\nQual o contato do usuário?")
@@ -207,16 +211,28 @@ class Agenda:
         return self.__permissao
 
     def cadastrar_evento(self):
-        print("Os eventos disponíveis são:\n")
         cadastrado = False
         while not cadastrado:
             contagem = 1
+            print("\nOs eventos disponíveis são:\n")
             for eventos_criados in self.banco_eventos.get_objetos():
                 print(f"{contagem}. {eventos_criados['titulo']}\n")
                 contagem += 1
-            print("Qual evento você gostaria de se cadastrar?")
+            print("Qual evento você gostaria de se cadastrar? (escreva SAIR para voltar ao menu)")
             escolha = input("> ")
+            if escolha == "SAIR" or escolha == "sair" or escolha == "Sair":
+                cadastrado = True
+            elif int(escolha) <= len(self.banco_eventos.get_objetos()) and int(escolha) > 0:
+                evento_escolhido = self.banco_eventos.get_objetos()[int(escolha)-1]
+                evento_escolhido = Evento(evento_escolhido['titulo'],evento_escolhido['dia'],evento_escolhido['mes'],evento_escolhido['ano'], evento_escolhido['start_hour'], evento_escolhido['finish_hour'], evento_escolhido['numero_vagas'])
+                print(evento_escolhido)
 
+                print("\nGostaria de se cadastrar?")
+                print("\n1. Sim")
+                print("\n2. Voltar à seleção\n")
+                escolha = input("> ")
+                if escolha == "1":
+                    evento_escolhido.participantes.append(self._nome_usuario)
 
     def menu(self):
         escolha = 0

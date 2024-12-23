@@ -20,5 +20,16 @@
         "area": [],
         "participantes": [],
         "numero_vagas": 90
+    },
+    {
+        "titulo": "Aulão de C2",
+        "ano": 2024,
+        "mes": 10,
+        "dia": 25,
+        "start_hour": "15:00",
+        "finish_hour": "16:00",
+        "numero_vagas": 60,
+        "area": [],
+        "participantes": []
     }
 ]
