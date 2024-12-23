@@ -9,6 +9,9 @@ from packages.controllers.SerialFuntion import BancoDados
 #para que exista eventos para cadastrar
 
 #todo: fazer o comentario em criar_evento
+#adicionar a opção de se cadastrar em evento
+#colocar area de interesse nos eventos
+#conferir se tudo está funcionando
 class Agenda:
     def __init__(self, usuario_atual):
         self.__banco_alunos = BancoDados("banco alunos.json")
