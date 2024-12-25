@@ -1,25 +1,14 @@
 [
     {
-        "titulo": "Encontro tardal",
-        "ano": 2024,
-        "mes": 4,
-        "dia": 20,
-        "start_hour": "16:00",
-        "finish_hour": "17:00",
-        "area": [],
-        "participantes": [],
-        "numero_vagas": 29
-    },
-    {
         "titulo": "Aulão de C1",
         "ano": 2024,
         "mes": 10,
-        "dia": 5,
-        "start_hour": "14:00",
+        "dia": 25,
+        "start_hour": "15:00",
         "finish_hour": "16:00",
+        "numero_vagas": 60,
         "area": [],
-        "participantes": [],
-        "numero_vagas": 90
+        "participantes": []
     },
     {
         "titulo": "Aulão de C2",
@@ -29,6 +18,17 @@
         "start_hour": "15:00",
         "finish_hour": "16:00",
         "numero_vagas": 60,
+        "area": [],
+        "participantes": []
+    },
+    {
+        "titulo": "Aula de forró",
+        "ano": 2024,
+        "mes": 5,
+        "dia": 8,
+        "start_hour": "8:00",
+        "finish_hour": "10:00",
+        "numero_vagas": 15,
         "area": [],
         "participantes": []
     }

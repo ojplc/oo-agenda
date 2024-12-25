@@ -20,6 +20,7 @@ class Agenda:
         self.canal = None #adicionar canal
         self.__permissao = usuario_atual.permissao()
         self._nome_usuario = usuario_atual.nome
+        self._matricula = usuario_atual.matricula
         self.menu()
     
 
@@ -214,28 +215,54 @@ class Agenda:
         return self.__permissao
 
     def cadastrar_evento(self):
+        #todo:
+        #se nao tiver vaga nao cadastra
+        #se ja tiver cadastrado nao cadastra de novo done
         cadastrado = False
         while not cadastrado:
             contagem = 1
+            ja_cadastrado = {}
             print("\nOs eventos disponíveis são:\n")
             for eventos_criados in self.banco_eventos.get_objetos():
-                print(f"{contagem}. {eventos_criados['titulo']}\n")
+                print(f"{contagem}. {eventos_criados['titulo']}")
+                for participantes in eventos_criados["participantes"]:
+                    if self._matricula == participantes:
+                        print("--> já cadastrado")
+                        ja_cadastrado[str(contagem)] = True
+                print(f"--> {eventos_criados["numero_vagas"] - len(eventos_criados["participantes"])} vagas disponíveis\n")
                 contagem += 1
-            print("Qual evento você gostaria de se cadastrar? (escreva SAIR para voltar ao menu)")
+            print("Escolha uma opção para receber mais detalhes sobre o evento\n(escreva SAIR para voltar ao menu)")
             escolha = input("> ")
             if escolha == "SAIR" or escolha == "sair" or escolha == "Sair":
                 cadastrado = True
-            elif int(escolha) <= len(self.banco_eventos.get_objetos()) and int(escolha) > 0:
-                evento_escolhido = self.banco_eventos.get_objetos()[int(escolha)-1]
-                evento_escolhido = Evento(evento_escolhido['titulo'],evento_escolhido['dia'],evento_escolhido['mes'],evento_escolhido['ano'], evento_escolhido['start_hour'], evento_escolhido['finish_hour'], evento_escolhido['numero_vagas'])
-                print(evento_escolhido)
+            elif int(escolha) > 0 and int(escolha) <= len(self.banco_eventos.get_objetos()):
+                evento_escolhido = self.banco_eventos.get_objetos()[int(escolha)-1] #index do evento
+                evento_escolhido = Evento(evento_escolhido['titulo'],evento_escolhido['dia'],evento_escolhido['mes'],evento_escolhido['ano'], evento_escolhido['start_hour'], evento_escolhido['finish_hour'], evento_escolhido['numero_vagas'], evento_escolhido["participantes"])
+                print(f"\n{evento_escolhido}")
+                if ja_cadastrado.get(str(escolha)):
+                    print("\nVocê já está cadastrado nesse evento\n")
+                    print("1. Descadastrar")
+                    print("2. Voltar à seleção")
+                    escolha2 = input(">")
+                    if escolha2 == "1":
+                        evento_escolhido.participantes.remove(self._matricula)
+                        self.banco_eventos.atualizar_objeto(evento_escolhido, int(escolha)-1)
+                        sleep(1)
 
-                print("\nGostaria de se cadastrar?")
-                print("\n1. Sim")
-                print("\n2. Voltar à seleção\n")
-                escolha = input("> ")
-                if escolha == "1":
-                    evento_escolhido.participantes.append(self._nome_usuario)
+
+                else:
+                    print("\nGostaria de se cadastrar?")
+                    print("\n1. Sim")
+                    print("2. Voltar à seleção\n")
+                    escolha2 = input("> ")
+                    if escolha2 == "1":
+                        evento_escolhido.participantes.append(self._matricula)
+                        self.banco_eventos.atualizar_objeto(evento_escolhido, int(escolha)-1)
+                        sleep(1)
+                        cadastrado = True
+            else:
+                print("Opção inválida")
+                sleep(1)
 
     def menu(self):
         escolha = 0
