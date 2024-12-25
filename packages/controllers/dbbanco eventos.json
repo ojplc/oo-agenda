@@ -30,6 +30,22 @@
         "finish_hour": "10:00",
         "numero_vagas": 15,
         "area": [],
-        "participantes": []
+        "participantes": [
+            "241011170"
+        ]
+    },
+    {
+        "titulo": "Reunião de professores",
+        "ano": 2025,
+        "mes": 9,
+        "dia": 12,
+        "start_hour": "13:00",
+        "finish_hour": "14:00",
+        "numero_vagas": 2,
+        "area": [],
+        "participantes": [
+            "14",
+            "01"
+        ]
     }
 ]

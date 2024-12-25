@@ -5,11 +5,8 @@ from packages.Evento import Evento
 from datetime import datetime
 from packages.controllers.SerialFuntion import BancoDados
 
-#começar a ver serialização agora para poder serializar os eventos
-#para que exista eventos para cadastrar
 
 #todo: fazer o comentario em criar_evento
-#adicionar a opção de se cadastrar em evento
 #colocar area de interesse nos eventos
 #conferir se tudo está funcionando
 class Agenda:
@@ -216,8 +213,8 @@ class Agenda:
 
     def cadastrar_evento(self):
         #todo:
-        #se nao tiver vaga nao cadastra
-        #se ja tiver cadastrado nao cadastra de novo done
+        #se nao tiver vaga nao cadastra done
+        #se ja tiver cadastrado nao cadastra de novo done 
         cadastrado = False
         while not cadastrado:
             contagem = 1
@@ -248,9 +245,11 @@ class Agenda:
                         evento_escolhido.participantes.remove(self._matricula)
                         self.banco_eventos.atualizar_objeto(evento_escolhido, int(escolha)-1)
                         sleep(1)
-
-
+                elif evento_escolhido.numero_vagas - len(evento_escolhido.participantes) == 0:
+                    print("\nEvento não tem mais vagas diponíveis")
+                    sleep(2)
                 else:
+
                     print("\nGostaria de se cadastrar?")
                     print("\n1. Sim")
                     print("2. Voltar à seleção\n")
