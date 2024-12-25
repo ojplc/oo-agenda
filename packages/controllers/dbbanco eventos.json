@@ -47,5 +47,16 @@
             "14",
             "01"
         ]
+    },
+    {
+        "titulo": "Simpósio de educação criativa",
+        "ano": 2024,
+        "mes": 12,
+        "dia": 11,
+        "start_hour": "7:45",
+        "finish_hour": "19:15",
+        "numero_vagas": 150,
+        "area": [],
+        "participantes": []
     }
 ]

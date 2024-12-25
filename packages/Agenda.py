@@ -6,7 +6,7 @@ from datetime import datetime
 from packages.controllers.SerialFuntion import BancoDados
 
 
-#todo: fazer o comentario em criar_evento
+#todo: fazer o comentario em criar_evento done
 #colocar area de interesse nos eventos
 #conferir se tudo está funcionando
 class Agenda:
@@ -22,7 +22,7 @@ class Agenda:
     
 
 
-    def criar_evento(self): #trabalhando aqui
+    def criar_evento(self):
         nome_evento = None
         data_evento = None
         horario_start = None
@@ -53,38 +53,55 @@ class Agenda:
                     sleep(2)
                     atributos["2"] = None
             
+            #horario start e horario finish
             while atributos["3"] == None:
                 print("\nQue horas começará o evento? (use o formato HH:MM)")
                 sleep(0.5)
                 atributos["3"] = str(input("> "))
                 try:
                     hs = datetime.strptime(atributos["3"], "%H:%M")
+                    erro = False
                 except:
                     print("Horário inválido, insira um valor válido")
                     sleep(2)
                     atributos["3"] = None
-            #ACESCENTAR UM CHECK SE O TEMPO DE COMEÇO É ANTES DO DE TÉRMINO
+                    erro = True
 
-            while atributos["4"] == None:
-                print("\nQue horas terminará o evento? (use o formato HH:MM)")
-                atributos["4"] = str(input("> "))
-                try:
-                    hf = datetime.strptime(atributos["4"], "%H:%M")
-                except:
-                    print("Horário inválido, insira um valor válido")
-                    sleep(2)
+
+                while atributos["4"] == None:
+                    if erro == True:
+                        break
+                    print("\nQue horas terminará o evento? (use o formato HH:MM)")
+                    atributos["4"] = str(input("> "))
+                    try:
+                        hf = datetime.strptime(atributos["4"], "%H:%M")
+                    except:
+                        print("Horário inválido, insira um valor válido")
+                        sleep(2)
+                        atributos["4"] = None
+                #horario start precisa ser menor que horario finish
+                if not erro and hf < hs:
+                    print("\nHorário de término tem que ser depois do horário do começo do evento")
+                    atributos["3"] = None
                     atributos["4"] = None
+                    sleep(2)
             
+            #quantidade de vagas
             while atributos["5"] == None:
                 print("\nQuantas vagas estarão disponíveis para o evento?")
-                atributos["5"] = int(input("> "))
+                try:
+                    atributos["5"] = int(input("> "))
+                except:
+                    print("Valor inválido")
+                    atributos["5"] = None
+                    sleep(2)
 
             confirmacao = None
             novo_evento = Evento(atributos["1"], dia, mes, ano, atributos["3"], atributos["4"], atributos["5"])
             while confirmacao == None:
                 print(f"\nO evento chamado '{novo_evento.titulo}' será adicionado ao sistema")
                 print(f"Ele ocorrerá {novo_evento.dia_evento()} dia {novo_evento.dia}")
-                print(f"Tendo uma duração de {novo_evento.calcular_duracao()}")
+                print(f"Tendo uma duração de {novo_evento.calcular_duracao()} hora(s)")
                 print("\nConfirma a operação?\n")
                 print("1. Adicionar evento")
                 print("2. Editar informção\n")
@@ -103,17 +120,21 @@ class Agenda:
                         print("Qual informação você gostaria de alterar?")
                         print("\n1. Nome do evento")
                         print("\n2. Data do evento")
-                        print("\n3. Horário de começo")
-                        print("\n4. Horário de término")
-                        print("\n5. Quantidade de vagas\n")
+                        print("\n3. Horário")
+                        print("\n4. Quantidade de vagas\n")
                         alterar = int(input("> "))
-                        if alterar <= len(atributos) + 1 and alterar > 0:
+                        if alterar == 3:
+                            atributos["3"] = None
+                            atributos["4"] = None
+                        elif alterar == 4:
+                            atributos["5"] = None
+                        elif alterar <= len(atributos) + 1 and alterar > 0:
                             atributos[str(alterar)] = None
                         else:
                             print()
                             print("Insira um valor válido")
                             alterar = None
-                    break
+                    break #break porque confirmação ainda nao tem valor
                 else:
                     print("Insira um valor válido")
                     sleep(1)
