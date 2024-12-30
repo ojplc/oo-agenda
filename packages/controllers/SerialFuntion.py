@@ -2,7 +2,7 @@ import json
 
 class BancoDados:
     def __init__(self, arquivo):
-        self.__nome_arquivo = "packages/controllers/db" + arquivo
+        self.__nome_arquivo = "packages/controllers/db/db" + arquivo
         self.__objetos = []
         self.read()
 

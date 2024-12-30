@@ -11,9 +11,9 @@ from packages.controllers.SerialFuntion import BancoDados
 #conferir se tudo está funcionando
 class Agenda:
     def __init__(self, usuario_atual):
-        self.__banco_alunos = BancoDados("banco alunos.json")
-        self.__banco_professores = BancoDados("banco professores.json")
-        self.banco_eventos = BancoDados("banco eventos.json")
+        self.__banco_alunos = BancoDados("banco_alunos.json")
+        self.__banco_professores = BancoDados("banco_professores.json")
+        self.banco_eventos = BancoDados("banco_eventos.json")
         self.canal = None #adicionar canal
         self.__permissao = usuario_atual.permissao()
         self._nome_usuario = usuario_atual.nome
@@ -359,7 +359,7 @@ class Agenda:
                 escolha = 0
 
             elif escolha == "4":
-                print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAté breve")
+                print("Até breve")
             else:
                 print("opção inválida\n")
                 escolha = 0

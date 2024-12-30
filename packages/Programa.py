@@ -6,8 +6,8 @@ from time import sleep
 
 class Programa:
     def __init__(self):
-        self.__banco_alunos = BancoDados("banco alunos.json")
-        self.__banco_professores = BancoDados("banco professores.json")
+        self.__banco_alunos = BancoDados("banco_alunos.json")
+        self.__banco_professores = BancoDados("banco_professores.json")
 
         self.user_atual = None
         self.login_menu()
