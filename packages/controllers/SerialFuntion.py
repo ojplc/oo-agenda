@@ -2,7 +2,7 @@ import json
 
 class BancoDados:
     def __init__(self, arquivo):
-        self.__nome_arquivo = "packages/controllers/db" + arquivo
+        self.__nome_arquivo = "packages/controllers/db/db" + arquivo
         self.__objetos = []
         self.read()
 
@@ -30,7 +30,9 @@ class BancoDados:
     def get_objetos(self):
         return self.__objetos
     
-
+    def atualizar_objeto(self,novo_objeto, index):
+        self.__objetos[int(index)] = vars(novo_objeto)
+        self.save()
 
 
 

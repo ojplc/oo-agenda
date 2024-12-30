@@ -16,13 +16,8 @@ class Pessoa(ABC):
     @property
     def contato(self):
         return self._contato
-    
-    @property
-    @abstractmethod
-    def area(self):
-        pass
 
-   
+
 
     @nome.setter
     def nome(self,nome):
@@ -36,11 +31,7 @@ class Pessoa(ABC):
     def contato(self,contato):
         self._contato = contato
 
-
-
-    @abstractmethod
-    def adicionar_area(self):
-        pass
+        
 
     @abstractmethod
     def permissao(self):

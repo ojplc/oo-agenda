@@ -1,0 +1,100 @@
+[
+    {
+        "titulo": "Aulão de C1",
+        "ano": 2024,
+        "mes": 10,
+        "dia": 25,
+        "start_hour": "15:00",
+        "finish_hour": "16:00",
+        "numero_vagas": 60,
+        "area": [
+            "matemática",
+            "cálculo"
+        ],
+        "participantes": []
+    },
+    {
+        "titulo": "Aulão de C2",
+        "ano": 2024,
+        "mes": 10,
+        "dia": 25,
+        "start_hour": "15:00",
+        "finish_hour": "16:00",
+        "numero_vagas": 60,
+        "area": [
+            "matemática",
+            "cálculo"
+        ],
+        "participantes": []
+    },
+    {
+        "titulo": "Aula de forró",
+        "ano": 2024,
+        "mes": 5,
+        "dia": 8,
+        "start_hour": "8:00",
+        "finish_hour": "10:00",
+        "numero_vagas": 15,
+        "area": [
+            "dança"
+        ],
+        "participantes": [
+            "241011170"
+        ]
+    },
+    {
+        "titulo": "Reunião de professores",
+        "ano": 2025,
+        "mes": 9,
+        "dia": 12,
+        "start_hour": "13:00",
+        "finish_hour": "14:00",
+        "numero_vagas": 2,
+        "area": [
+            "coordenação"
+        ],
+        "participantes": [
+            "14",
+            "01"
+        ]
+    },
+    {
+        "titulo": "Simpósio de educação criativa",
+        "ano": 2024,
+        "mes": 12,
+        "dia": 11,
+        "start_hour": "7:45",
+        "finish_hour": "19:15",
+        "numero_vagas": 150,
+        "area": [
+            "gameficação"
+        ],
+        "participantes": []
+    },
+    {
+        "titulo": "Rei e Rainha da derivada",
+        "ano": 2025,
+        "mes": 1,
+        "dia": 12,
+        "start_hour": "8:00",
+        "finish_hour": "18:00",
+        "numero_vagas": 200,
+        "area": [],
+        "participantes": [
+            "241011170"
+        ]
+    },
+    {
+        "titulo": "Monitoria de cálculo",
+        "ano": 2025,
+        "mes": 2,
+        "dia": 2,
+        "start_hour": "12:00",
+        "finish_hour": "14:00",
+        "numero_vagas": 100,
+        "area": [],
+        "participantes": [
+            "241011170"
+        ]
+    }
+]

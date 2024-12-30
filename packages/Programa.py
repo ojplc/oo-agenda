@@ -6,8 +6,8 @@ from time import sleep
 
 class Programa:
     def __init__(self):
-        self.__banco_alunos = BancoDados("banco alunos.json")
-        self.__banco_professores = BancoDados("banco professores.json")
+        self.__banco_alunos = BancoDados("banco_alunos.json")
+        self.__banco_professores = BancoDados("banco_professores.json")
 
         self.user_atual = None
         self.login_menu()
@@ -16,9 +16,8 @@ class Programa:
             raise ValueError("usuario_atual deve ser uma instância de Aluno ou Professor")
         ## ver se tem algum alarme ou evento pendente antes de abrir a agenda
         self.iniciar_agenda()
-
     def iniciar_agenda(self):
-        self.sessao = Agenda(permissao = self.user_atual.permissao(), nome_usuario = self.user_atual.nome)
+        self.sessao = Agenda(self.user_atual)
         
     def login_menu(self):
         login_matricula = None
