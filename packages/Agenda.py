@@ -7,7 +7,7 @@ from packages.controllers.SerialFuntion import BancoDados
 
 
 #todo: fazer o comentario em criar_evento done
-#colocar area de interesse nos eventos
+#colocar area de interesse nos eventos done
 #conferir se tudo está funcionando
 class Agenda:
     def __init__(self, usuario_atual):
@@ -28,6 +28,7 @@ class Agenda:
         horario_start = None
         horario_finish = None
         quantidade_vagas = None
+        interesse = None
         
         atributos = {"1": nome_evento, "2" : data_evento, "3" : horario_start, "4" : horario_finish, "5" : quantidade_vagas}
 
@@ -72,6 +73,7 @@ class Agenda:
                     if erro == True:
                         break
                     print("\nQue horas terminará o evento? (use o formato HH:MM)")
+                    sleep(0.5)
                     atributos["4"] = str(input("> "))
                     try:
                         hf = datetime.strptime(atributos["4"], "%H:%M")
@@ -90,21 +92,55 @@ class Agenda:
             while atributos["5"] == None:
                 print("\nQuantas vagas estarão disponíveis para o evento?")
                 try:
+                    sleep(0.5)
                     atributos["5"] = int(input("> "))
                 except:
                     print("Valor inválido")
                     atributos["5"] = None
                     sleep(2)
 
+            #adicionar área de interesse
+            while interesse == None:
+                print("\nGostaria de adicionar áreas de interesse ao evento?\n")
+                print("1. Adicionar áreas de interesse")
+                print("2. Não adicionar áreas de interesse\n")
+                sleep(0.5)
+                escolha_interesse = str(input("> "))
+                if escolha_interesse == "1":
+                    while interesse == None:
+                        print("\nEscreva as áreas de interesse separados por ',' (vírgula)")
+                        print("Exemplo: saúde, engenharia, biomedicina\n")
+                        print("Insira até 3 áreas de interesse")
+                        sleep(0.5)
+                        interesse = str(input("> ")).split(",")
+                        if len(interesse) > 3:
+                            print("Apenas 3 áreas de interesse são permitidas")
+                            interesse = None
+                            sleep(1)
+
+                elif escolha_interesse == "2":
+                    interesse = []
+                else:
+                    print("Insira um valor válido")
+                    sleep(2)
+
+
+
             confirmacao = None
             novo_evento = Evento(atributos["1"], dia, mes, ano, atributos["3"], atributos["4"], atributos["5"])
+            novo_evento.area = interesse
             while confirmacao == None:
                 print(f"\nO evento chamado '{novo_evento.titulo}' será adicionado ao sistema")
-                print(f"Ele ocorrerá {novo_evento.dia_evento()} dia {novo_evento.dia}")
-                print(f"Tendo uma duração de {novo_evento.calcular_duracao()} hora(s)")
+                
+                if novo_evento.area != []:
+                    print(f"Ele tem as seguintes áreas de interesse: {",".join(area for area in novo_evento.area)}")
+
+                print(f"Ele ocorrerá {novo_evento.dia_evento()} dia {novo_evento.dia} de {novo_evento.mes_evento()}")
+                print(f"Tendo uma duração de {novo_evento.calcular_duracao()}")
                 print("\nConfirma a operação?\n")
                 print("1. Adicionar evento")
                 print("2. Editar informção\n")
+                sleep(0.5)
                 confirmacao = str(input("> "))
                 #evneto adicionado
                 if confirmacao == "1":
@@ -121,15 +157,20 @@ class Agenda:
                         print("\n1. Nome do evento")
                         print("\n2. Data do evento")
                         print("\n3. Horário")
-                        print("\n4. Quantidade de vagas\n")
-                        alterar = int(input("> "))
-                        if alterar == 3:
+                        print("\n4. Quantidade de vagas")
+                        print("\n5. Áreas de interesse\n")
+                        alterar = str(input("> "))
+                        if alterar == "1":
+                            atributos["1"] = None
+                        elif alterar == "2":
+                            atributos["2"] = None
+                        elif alterar == "3":
                             atributos["3"] = None
                             atributos["4"] = None
-                        elif alterar == 4:
+                        elif alterar == "4":
                             atributos["5"] = None
-                        elif alterar <= len(atributos) + 1 and alterar > 0:
-                            atributos[str(alterar)] = None
+                        elif alterar == "5":
+                            interesse = None
                         else:
                             print()
                             print("Insira um valor válido")
@@ -288,9 +329,9 @@ class Agenda:
         escolha = 0
         while escolha == 0:
             print(f"\nBem vindo a agenda {self._nome_usuario}, o que você gostaria de fazer?\n")
-            print("1. Criar evento") #doing
+            print("1. Criar evento")
             print("2. Adicionar usuário") 
-            print("3. Cadastrar-se em um evento\n") #todo
+            print("3. Cadastrar-se em um evento\n")
             escolha = input("> ")
             if escolha == "1":
                 self.criar_evento()
@@ -306,8 +347,7 @@ class Agenda:
 
             elif escolha == 4:
                 print("Até breve")
-
-                #adicionar area de interesse tambem
             else:
                 print("opção inválida\n")
                 escolha = 0
+                sleep(1)

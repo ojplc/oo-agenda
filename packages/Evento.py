@@ -17,15 +17,33 @@ class Evento:
 
     def dia_evento(self):
         dias_da_semana = {
-                                0: "segunda-feira",
-                                1: "terça-feira",
-                                2: "quarta-feira",
-                                3: "quinta-feira",
-                                4: "sexta-feira",
-                                5: "sábado",
-                                6: "domingo"
+                            0: "segunda-feira",
+                            1: "terça-feira",
+                            2: "quarta-feira",
+                            3: "quinta-feira",
+                            4: "sexta-feira",
+                            5: "sábado",
+                            6: "domingo"
         }
         return dias_da_semana[datetime(self.ano, self.mes, self.dia).weekday()]
+
+    def mes_evento(self):
+        meses_do_ano = {
+                        1: "janeiro",
+                        2: "fevereiro",
+                        3: "março",
+                        4: "abril",
+                        5: "maio",
+                        6: "junho",
+                        7: "julho",
+                        8: "agosto",
+                        9: "setembro",
+                        10: "outubro",
+                        11: "novembro",
+                        12: "dezembro"
+        }
+        return meses_do_ano[self.mes]
+
 
     def __str__(self):
         return f"O evento '{self.titulo}' ocorrerá {self.dia_evento()} dia {self.dia},\ne começa às {self.start_hour} terá duração de {str(self.calcular_duracao())} hora(s)"

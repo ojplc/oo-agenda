@@ -58,5 +58,19 @@
         "numero_vagas": 150,
         "area": [],
         "participantes": []
+    },
+    {
+        "titulo": "Rei e Rainha da derivada",
+        "ano": 2025,
+        "mes": 1,
+        "dia": 12,
+        "start_hour": "8:00",
+        "finish_hour": "18:00",
+        "numero_vagas": 200,
+        "area": [
+            "matemática",
+            " cálculo"
+        ],
+        "participantes": []
     }
 ]

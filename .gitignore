@@ -3,3 +3,10 @@ Agenda.code-workspace
 Testbench 02.py
 Testbench xx.py
 *.pyc
+packages/__pycache__/Agenda.cpython-312.pyc
+
+packages/__pycache__/Agenda.cpython-312.pyc
+packages/__pycache__/Aluno.cpython-312.pyc
+packages/__pycache__/Pessoa.cpython-312.pyc
+packages/__pycache__/Professor.cpython-312.pyc
+packages/controllers/db/Test_Serial_function.txt
