@@ -7,7 +7,10 @@
         "start_hour": "15:00",
         "finish_hour": "16:00",
         "numero_vagas": 60,
-        "area": [],
+        "area": [
+            "matemática",
+            "cálculo"
+        ],
         "participantes": []
     },
     {
@@ -18,7 +21,10 @@
         "start_hour": "15:00",
         "finish_hour": "16:00",
         "numero_vagas": 60,
-        "area": [],
+        "area": [
+            "matemática",
+            "cálculo"
+        ],
         "participantes": []
     },
     {
@@ -29,7 +35,9 @@
         "start_hour": "8:00",
         "finish_hour": "10:00",
         "numero_vagas": 15,
-        "area": [],
+        "area": [
+            "dança"
+        ],
         "participantes": [
             "241011170"
         ]
@@ -42,7 +50,9 @@
         "start_hour": "13:00",
         "finish_hour": "14:00",
         "numero_vagas": 2,
-        "area": [],
+        "area": [
+            "coordenação"
+        ],
         "participantes": [
             "14",
             "01"
@@ -56,7 +66,9 @@
         "start_hour": "7:45",
         "finish_hour": "19:15",
         "numero_vagas": 150,
-        "area": [],
+        "area": [
+            "gameficação"
+        ],
         "participantes": []
     },
     {
@@ -67,10 +79,22 @@
         "start_hour": "8:00",
         "finish_hour": "18:00",
         "numero_vagas": 200,
-        "area": [
-            "matemática",
-            " cálculo"
-        ],
-        "participantes": []
+        "area": [],
+        "participantes": [
+            "241011170"
+        ]
+    },
+    {
+        "titulo": "Monitoria de cálculo",
+        "ano": 2025,
+        "mes": 2,
+        "dia": 2,
+        "start_hour": "12:00",
+        "finish_hour": "14:00",
+        "numero_vagas": 100,
+        "area": [],
+        "participantes": [
+            "241011170"
+        ]
     }
 ]

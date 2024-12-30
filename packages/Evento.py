@@ -46,7 +46,7 @@ class Evento:
 
 
     def __str__(self):
-        return f"O evento '{self.titulo}' ocorrerá {self.dia_evento()} dia {self.dia},\ne começa às {self.start_hour} terá duração de {str(self.calcular_duracao())} hora(s)"
+        return f"O evento '{self.titulo}' ocorrerá {self.dia_evento()} dia {self.dia} de {self.mes_evento()},\ncomeça às {self.start_hour} e terá duração de {str(self.calcular_duracao())}"
 
 
 

@@ -132,7 +132,8 @@ class Agenda:
                 print(f"Tendo uma duração de {novo_evento.calcular_duracao()}")
                 print("\nConfirma a operação?\n")
                 print("1. Adicionar evento")
-                print("2. Editar informção\n")
+                print("2. Editar informção")
+                print("3. Descartar evento\n")
                 confirmacao = str(input("> "))
                 #evneto adicionado
                 if confirmacao == "1":
@@ -168,6 +169,9 @@ class Agenda:
                             print("Insira um valor válido")
                             alterar = None
                     break #break porque confirmação ainda nao tem valor
+                elif confirmacao == "3":
+                    print("Evento descartado")
+                    sleep(1)
                 else:
                     print("Insira um valor válido")
                     sleep(1)
@@ -271,27 +275,35 @@ class Agenda:
         #se ja tiver cadastrado nao cadastra de novo done 
         cadastrado = False
         while not cadastrado:
-            contagem = 1
-            ja_cadastrado = {}
-            print("\nOs eventos disponíveis são:\n")
-            for eventos_criados in self.banco_eventos.get_objetos():
-                for participantes in eventos_criados["participantes"]:
-                    if self._matricula == participantes:
-                        ja_cadastrado[str(contagem)] = True
-                if ja_cadastrado.get(str(contagem)) == True:
-                    print(f"{contagem}. {eventos_criados['titulo']} (Já cadastrado)")
-                else:
-                    print(f"{contagem}. {eventos_criados['titulo']}")
-                if eventos_criados["area"] != []:
-                    print(f'--> Áreas de interesse: {",".join(evento for evento in eventos_criados["area"])}')
-                
-                print(f"--> {eventos_criados["numero_vagas"] - len(eventos_criados["participantes"])} vagas disponíveis\n")
-                contagem += 1
-            print("Escolha uma opção para receber mais detalhes sobre o evento\n(escreva SAIR para voltar ao menu)")
-            escolha = input("> ")
-            if escolha == "SAIR" or escolha == "sair" or escolha == "Sair":
+
+            escolha = None
+            while escolha == None:
+                contagem = 1
+                ja_cadastrado = {}
+                print("\nOs eventos disponíveis são:\n")
+                for eventos_criados in self.banco_eventos.get_objetos():
+                    for participantes in eventos_criados["participantes"]:
+                        if self._matricula == participantes:
+                            ja_cadastrado[str(contagem)] = True
+                    if ja_cadastrado.get(str(contagem)) == True:
+                        print(f"{contagem}. {eventos_criados['titulo']} (Já cadastrado)")
+                    else:
+                        print(f"{contagem}. {eventos_criados['titulo']}")
+                    if eventos_criados["area"] != []:
+                        print(f'--> Áreas de interesse: {",".join(evento for evento in eventos_criados["area"])}')
+                    
+                    print(f"--> {eventos_criados["numero_vagas"] - len(eventos_criados["participantes"])} vagas disponíveis\n")
+                    contagem += 1
+                print("Escolha uma opção para receber mais detalhes sobre o evento\n(escolha 0 para voltar ao menu)")
+                try:
+                    escolha = int(input("> "))
+                except:
+                    print("Valor inválido")
+                    sleep(1)
+                    escolha = None
+            if escolha == 0:
                 cadastrado = True
-            elif int(escolha) > 0 and int(escolha) <= len(self.banco_eventos.get_objetos()):
+            elif escolha > 0 and escolha <= len(self.banco_eventos.get_objetos()):
                 evento_escolhido = self.banco_eventos.get_objetos()[int(escolha)-1] #index do evento
                 evento_escolhido = Evento(evento_escolhido['titulo'],evento_escolhido['dia'],evento_escolhido['mes'],evento_escolhido['ano'], evento_escolhido['start_hour'], evento_escolhido['finish_hour'], evento_escolhido['numero_vagas'], evento_escolhido["participantes"])
                 print(f"\n{evento_escolhido}")
@@ -328,7 +340,8 @@ class Agenda:
             print(f"\nBem vindo a agenda {self._nome_usuario}, o que você gostaria de fazer?\n")
             print("1. Criar evento")
             print("2. Adicionar usuário") 
-            print("3. Cadastrar-se em um evento\n")
+            print("3. Cadastrar-se em um evento")
+            print("4. Sair\n")
             escolha = input("> ")
             if escolha == "1":
                 self.criar_evento()
@@ -342,9 +355,10 @@ class Agenda:
                 self.cadastrar_evento()
                 escolha = 0
 
-            elif escolha == 4:
-                print("Até breve")
+            elif escolha == "4":
+                print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAté breve")
             else:
                 print("opção inválida\n")
                 escolha = 0
                 sleep(1)
+        quit()

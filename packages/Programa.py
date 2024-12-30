@@ -16,7 +16,6 @@ class Programa:
             raise ValueError("usuario_atual deve ser uma instância de Aluno ou Professor")
         ## ver se tem algum alarme ou evento pendente antes de abrir a agenda
         self.iniciar_agenda()
-
     def iniciar_agenda(self):
         self.sessao = Agenda(self.user_atual)
         
