@@ -227,6 +227,7 @@ class Agenda:
                     print("Confirma a operação?\n")
                     print("1. Adicionar usuário")
                     print("2. Editar informção\n")
+                    print("3. Cancelar")
                     confirmacao = input("> ")
                     if confirmacao == "1":
                         new_user = atribuicao.get(atributos["cargo"])(atributos["nome"],atributos["matricula"],atributos["contato"])
@@ -254,6 +255,8 @@ class Agenda:
                                 sleep(1)
                                 alterar = None
                         break
+                    elif confirmacao == "3":
+                        print("Operação cancelada")
                     else:
                         print("Insira um valor válido")
                         confirmacao = None
