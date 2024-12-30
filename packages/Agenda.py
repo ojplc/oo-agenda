@@ -36,12 +36,10 @@ class Agenda:
         while novo_evento == None:
             while atributos["1"] == None:
                 print("\nQual será o nome do evento?")
-                sleep(0.5)
                 atributos["1"] = str(input("> "))
 
             while atributos["2"] == None:
                 print("\nQual será a data do evento? (use o formato DD/MM/AAAA)")
-                sleep(0.5)
                 atributos["2"] = str(input("> "))
                 try:
                     dia,mes,ano = atributos["2"].split("/")
@@ -51,20 +49,19 @@ class Agenda:
                     datetime(int(ano), int(mes), int(dia))
                 except ValueError:
                     print("Data inválida, insira um valor válido")
-                    sleep(2)
+                    sleep(1)
                     atributos["2"] = None
             
             #horario start e horario finish
             while atributos["3"] == None:
                 print("\nQue horas começará o evento? (use o formato HH:MM)")
-                sleep(0.5)
                 atributos["3"] = str(input("> "))
                 try:
                     hs = datetime.strptime(atributos["3"], "%H:%M")
                     erro = False
                 except:
                     print("Horário inválido, insira um valor válido")
-                    sleep(2)
+                    sleep(1)
                     atributos["3"] = None
                     erro = True
 
@@ -73,45 +70,41 @@ class Agenda:
                     if erro == True:
                         break
                     print("\nQue horas terminará o evento? (use o formato HH:MM)")
-                    sleep(0.5)
                     atributos["4"] = str(input("> "))
                     try:
                         hf = datetime.strptime(atributos["4"], "%H:%M")
                     except:
                         print("Horário inválido, insira um valor válido")
-                        sleep(2)
+                        sleep(1)
                         atributos["4"] = None
                 #horario start precisa ser menor que horario finish
                 if not erro and hf < hs:
                     print("\nHorário de término tem que ser depois do horário do começo do evento")
                     atributos["3"] = None
                     atributos["4"] = None
-                    sleep(2)
+                    sleep(1)
             
             #quantidade de vagas
             while atributos["5"] == None:
                 print("\nQuantas vagas estarão disponíveis para o evento?")
                 try:
-                    sleep(0.5)
                     atributos["5"] = int(input("> "))
                 except:
                     print("Valor inválido")
                     atributos["5"] = None
-                    sleep(2)
+                    sleep(1)
 
             #adicionar área de interesse
             while interesse == None:
                 print("\nGostaria de adicionar áreas de interesse ao evento?\n")
                 print("1. Adicionar áreas de interesse")
                 print("2. Não adicionar áreas de interesse\n")
-                sleep(0.5)
                 escolha_interesse = str(input("> "))
                 if escolha_interesse == "1":
                     while interesse == None:
                         print("\nEscreva as áreas de interesse separados por ',' (vírgula)")
                         print("Exemplo: saúde, engenharia, biomedicina\n")
                         print("Insira até 3 áreas de interesse")
-                        sleep(0.5)
                         interesse = str(input("> ")).split(",")
                         if len(interesse) > 3:
                             print("Apenas 3 áreas de interesse são permitidas")
@@ -122,7 +115,7 @@ class Agenda:
                     interesse = []
                 else:
                     print("Insira um valor válido")
-                    sleep(2)
+                    sleep(1)
 
 
 
@@ -140,7 +133,6 @@ class Agenda:
                 print("\nConfirma a operação?\n")
                 print("1. Adicionar evento")
                 print("2. Editar informção\n")
-                sleep(0.5)
                 confirmacao = str(input("> "))
                 #evneto adicionado
                 if confirmacao == "1":
@@ -218,7 +210,7 @@ class Agenda:
                     atributos["matricula"] = str(input("> "))
                     if self.__banco_alunos.verificar_matricula(atributos["matricula"]) or self.__banco_professores.verificar_matricula(atributos["matricula"]):
                         print("\nEssa matricula já está cadastrada no sistema!!\n")
-                        sleep(2)
+                        sleep(1)
                         atributos["matricula"] == None
                 
                 while atributos["contato"] == None:
@@ -283,11 +275,16 @@ class Agenda:
             ja_cadastrado = {}
             print("\nOs eventos disponíveis são:\n")
             for eventos_criados in self.banco_eventos.get_objetos():
-                print(f"{contagem}. {eventos_criados['titulo']}")
                 for participantes in eventos_criados["participantes"]:
                     if self._matricula == participantes:
-                        print("--> já cadastrado")
                         ja_cadastrado[str(contagem)] = True
+                if ja_cadastrado.get(str(contagem)) == True:
+                    print(f"{contagem}. {eventos_criados['titulo']} (Já cadastrado)")
+                else:
+                    print(f"{contagem}. {eventos_criados['titulo']}")
+                if eventos_criados["area"] != []:
+                    print(f'--> Áreas de interesse: {",".join(evento for evento in eventos_criados["area"])}')
+                
                 print(f"--> {eventos_criados["numero_vagas"] - len(eventos_criados["participantes"])} vagas disponíveis\n")
                 contagem += 1
             print("Escolha uma opção para receber mais detalhes sobre o evento\n(escreva SAIR para voltar ao menu)")
@@ -309,7 +306,7 @@ class Agenda:
                         sleep(1)
                 elif evento_escolhido.numero_vagas - len(evento_escolhido.participantes) == 0:
                     print("\nEvento não tem mais vagas diponíveis")
-                    sleep(2)
+                    sleep(1)
                 else:
 
                     print("\nGostaria de se cadastrar?")
