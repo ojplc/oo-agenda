@@ -1,13 +1,13 @@
 from datetime import datetime
 class Evento:
-    def __init__(self, titulo, dia, mes, ano, shoras, fhoras, numero_vagas, participantes = []):
+    def __init__(self, titulo, dia, mes, ano, shoras, fhoras, numero_vagas, participantes = [], area = []):
         self.titulo = titulo
 
         self.ano,self.mes,self.dia = [ano, mes, dia]
         self.start_hour = shoras
         self.finish_hour = fhoras
         self.numero_vagas = numero_vagas
-        self.area = []
+        self.area = area
         self.participantes = participantes
 
 
@@ -44,9 +44,11 @@ class Evento:
         }
         return meses_do_ano[self.mes]
 
+    def retornar_datetime(self):
+        return datetime(self.ano, self.mes, self.dia)
 
     def __str__(self):
-        return f"O evento '{self.titulo}' ocorrerá {self.dia_evento()} dia {self.dia} de {self.mes_evento()},\ncomeça às {self.start_hour} e terá duração de {str(self.calcular_duracao())}"
+        return f'O evento "{self.titulo}" ocorrerá {self.dia_evento()} dia {self.dia} de {self.mes_evento()},\ncomeça às {self.start_hour} \ntermina às {self.finish_hour} \ntendo duração de {str(self.calcular_duracao())}'
 
 
 

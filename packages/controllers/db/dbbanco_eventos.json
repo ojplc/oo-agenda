@@ -11,7 +11,9 @@
             "matemática",
             "cálculo"
         ],
-        "participantes": []
+        "participantes": [
+            "241011170"
+        ]
     },
     {
         "titulo": "Aulão de C2",
@@ -86,9 +88,9 @@
     },
     {
         "titulo": "Monitoria de cálculo",
-        "ano": 2025,
-        "mes": 2,
-        "dia": 2,
+        "ano": 2024,
+        "mes": 10,
+        "dia": 25,
         "start_hour": "12:00",
         "finish_hour": "14:00",
         "numero_vagas": 100,
