@@ -11,10 +11,7 @@ from packages.controllers.SerialFuntion import BancoDados
 #conferir se tudo está funcionando
 class Agenda:
     def __init__(self, usuario_atual):
-        self.__banco_alunos = BancoDados("banco_alunos.json")
-        self.__banco_professores = BancoDados("banco_professores.json")
         self.banco_eventos = BancoDados("banco_eventos.json")
-        self.canal = None #adicionar canal
         self.__permissao = usuario_atual.permissao()
         self._nome_usuario = usuario_atual.nome
         self._matricula = usuario_atual.matricula
@@ -187,6 +184,8 @@ class Agenda:
 
 
     def criar_pessoa(self):
+        __banco_alunos = BancoDados("banco_alunos.json")
+        __banco_professores = BancoDados("banco_professores.json")
         if self.checar_permissao():
             atribuicao = {"1": Aluno, "2": Professor}
             cargos = {"1": "Aluno", "2": "Professor"}
@@ -212,7 +211,7 @@ class Agenda:
                 while atributos["matricula"] == None:
                     print("\nQual a matrícula do usuário?")
                     atributos["matricula"] = str(input("> "))
-                    if self.__banco_alunos.verificar_matricula(atributos["matricula"]) or self.__banco_professores.verificar_matricula(atributos["matricula"]):
+                    if __banco_alunos.verificar_matricula(atributos["matricula"]) or __banco_professores.verificar_matricula(atributos["matricula"]):
                         print("\nEssa matricula já está cadastrada no sistema!!\n")
                         sleep(1)
                         atributos["matricula"] = None
@@ -233,10 +232,10 @@ class Agenda:
                         new_user = atribuicao.get(atributos["cargo"])(atributos["nome"],atributos["matricula"],atributos["contato"])
                         
                         if atributos["cargo"] == "1":
-                            self.__banco_alunos.write(new_user)
+                            __banco_alunos.write(new_user)
                         
                         if atributos["cargo"] == "2":
-                            self.__banco_professores.write(new_user)
+                            __banco_professores.write(new_user)
 
                         sleep(1)
                     elif confirmacao == "2":
