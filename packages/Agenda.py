@@ -283,12 +283,13 @@ class Agenda:
             while escolha == None:
                 contagem = 1
                 ja_cadastrado = {}
+                
                 print("\nOs eventos disponíveis são:\n")
                 for eventos_criados in self.banco_eventos.get_objetos():
                     for participantes in eventos_criados["participantes"]:
                         if self._matricula == participantes:
-                            ja_cadastrado[str(contagem)] = True
-                    if ja_cadastrado.get(str(contagem)) == True:
+                            ja_cadastrado[str(contagem - 1)] = True
+                    if ja_cadastrado.get(str(contagem - 1)) == True:
                         print(f"{contagem}. {eventos_criados['titulo']} (Já cadastrado)")
                     else:
                         print(f"{contagem}. {eventos_criados['titulo']}")
@@ -308,12 +309,12 @@ class Agenda:
                 cadastrado = True
             elif escolha > 0 and escolha <= len(self.banco_eventos.get_objetos()):
                 evento_escolhido = self.banco_eventos.get_objetos()[int(escolha)-1] #index do evento
-                evento_escolhido = Evento(evento_escolhido['titulo'],evento_escolhido['dia'],evento_escolhido['mes'],evento_escolhido['ano'], evento_escolhido['start_hour'], evento_escolhido['finish_hour'], evento_escolhido['numero_vagas'], evento_escolhido["participantes"])
-                print(f"\n{evento_escolhido}")
-                if ja_cadastrado.get(str(escolha)):
+                evento_escolhido = Evento(evento_escolhido['titulo'],evento_escolhido['dia'],evento_escolhido['mes'],evento_escolhido['ano'], evento_escolhido['start_hour'], evento_escolhido['finish_hour'], evento_escolhido['numero_vagas'], evento_escolhido["participantes"], evento_escolhido["area"])
+                print(f"\n{evento_escolhido}\n")
+                if ja_cadastrado.get(str(escolha - 1)):
                     print("\nVocê já está cadastrado nesse evento\n")
                     print("1. Descadastrar")
-                    print("2. Voltar à seleção")
+                    print("2. Voltar à seleção\n")
                     escolha2 = input(">")
                     if escolha2 == "1":
                         evento_escolhido.participantes.remove(self._matricula)
@@ -323,8 +324,18 @@ class Agenda:
                     print("\nEvento não tem mais vagas diponíveis")
                     sleep(1)
                 else:
-
-                    print("\nGostaria de se cadastrar?")
+                    horario_colide = False
+                    for evento_ja_cadastrado in ja_cadastrado.keys():
+                        data_ja_cadastrada = self.banco_eventos.get_objeto_index(evento_ja_cadastrado)
+                        if datetime(data_ja_cadastrada['ano'],data_ja_cadastrada['mes'], data_ja_cadastrada['dia']) == evento_escolhido.retornar_datetime():
+                            print(f'Esse evento ocorre no mesmo dia que "{data_ja_cadastrada['titulo']}" o qual você está cadastrado')
+                            print(f"{data_ja_cadastrada['titulo']} começa às {data_ja_cadastrada['start_hour']} e termina às {data_ja_cadastrada['finish_hour']}\n")
+                            horario_colide = True
+                    if horario_colide:
+                        print(f'Certifique-se de que você consegue participar também em "{evento_escolhido.titulo}"!!')
+                        print("\nGostaria de se cadastrar mesmo assim?")        
+                    else:
+                        print("\nGostaria de se cadastrar?")
                     print("\n1. Sim")
                     print("2. Voltar à seleção\n")
                     escolha2 = input("> ")
