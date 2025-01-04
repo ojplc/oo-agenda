@@ -5,5 +5,11 @@
         "_contato": "241011170@aluno.unb.br",
         "area": [],
         "_Aluno__permissao": false
+    },
+    {
+        "_nome": "Aluno",
+        "_matricula": "02",
+        "_contato": "aluno",
+        "_Aluno__permissao": false
     }
 ]

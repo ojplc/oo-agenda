@@ -45,19 +45,28 @@
         ]
     },
     {
-        "titulo": "Reunião de professores",
+        "titulo": "Debate eleitoral",
         "ano": 2025,
         "mes": 9,
         "dia": 12,
         "start_hour": "13:00",
         "finish_hour": "14:00",
-        "numero_vagas": 2,
+        "numero_vagas": 10,
         "area": [
-            "coordenação"
+            "coordenação",
+            "política"
         ],
         "participantes": [
             "14",
-            "01"
+            "01",
+            "06",
+            "50",
+            "90",
+            "212",
+            "356",
+            "92",
+            "78",
+            "32"
         ]
     },
     {

@@ -215,7 +215,7 @@ class Agenda:
                     if self.__banco_alunos.verificar_matricula(atributos["matricula"]) or self.__banco_professores.verificar_matricula(atributos["matricula"]):
                         print("\nEssa matricula já está cadastrada no sistema!!\n")
                         sleep(1)
-                        atributos["matricula"] == None
+                        atributos["matricula"] = None
                 
                 while atributos["contato"] == None:
                     print("\nQual o contato do usuário?")
