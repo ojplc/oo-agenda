@@ -51,7 +51,7 @@ class Evento:
         return f'O evento "{self.titulo}" ocorrerá {self.dia_evento()} dia {self.dia} de {self.mes_evento()},\ncomeça às {self.start_hour} \ntermina às {self.finish_hour} \ntendo duração de {str(self.calcular_duracao())}'
 
 
-
+#colinha da biblioteca datetime
 #self.date = datetime(ano, mes, dia)
 #self.start_hour = datetime.strptime(shoras, "%H:%M")
 #self.finish_hour = datetime.strptime(fhoras,"%H:%M")

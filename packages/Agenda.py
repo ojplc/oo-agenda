@@ -6,9 +6,6 @@ from datetime import datetime
 from packages.controllers.SerialFuntion import BancoDados
 
 
-#todo: fazer o comentario em criar_evento done
-#colocar area de interesse nos eventos done
-#conferir se tudo está funcionando
 class Agenda:
     def __init__(self, usuario_atual):
         self.banco_eventos = BancoDados("banco_eventos.json")
@@ -272,9 +269,6 @@ class Agenda:
         return self.__permissao
 
     def cadastrar_evento(self):
-        #todo:
-        #se nao tiver vaga nao cadastra done
-        #se ja tiver cadastrado nao cadastra de novo done 
         cadastrado = False
         while not cadastrado:
 
