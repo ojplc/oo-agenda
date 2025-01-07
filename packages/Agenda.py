@@ -225,8 +225,8 @@ class Agenda:
                     print(f"\nO {cargos[atributos['cargo']]} chamado {atributos['nome']}, com matrícula {atributos['matricula']} e contato {atributos['contato']} será adicionado ao sistema")
                     print("Confirma a operação?\n")
                     print("1. Adicionar usuário")
-                    print("2. Editar informção\n")
-                    print("3. Cancelar")
+                    print("2. Editar informção")
+                    print("3. Cancelar\n")
                     confirmacao = input("> ")
                     if confirmacao == "1":
                         new_user = atribuicao.get(atributos["cargo"])(atributos["nome"],atributos["matricula"],atributos["contato"])

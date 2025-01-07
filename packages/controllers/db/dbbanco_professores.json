@@ -3,7 +3,12 @@
         "_nome": "Administrador",
         "_matricula": "01",
         "_contato": "admin",
-        "area": [],
+        "_Professor__permissao": true
+    },
+    {
+        "_nome": "Henrique Gomes",
+        "_matricula": "04505044688",
+        "_contato": "hgmoura@yahoo.com",
         "_Professor__permissao": true
     }
 ]
