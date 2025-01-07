@@ -123,7 +123,7 @@ class Agenda:
                 print(f"\nO evento chamado '{novo_evento.titulo}' será adicionado ao sistema")
                 
                 if novo_evento.area != []:
-                    print(f"Ele tem as seguintes áreas de interesse: {",".join(area for area in novo_evento.area)}")
+                    print(f"Ele tem as seguintes áreas de interesse: {','.join(area for area in novo_evento.area)}")
 
                 print(f"Ele ocorrerá {novo_evento.dia_evento()} dia {novo_evento.dia} de {novo_evento.mes_evento()}")
                 print(f"Tendo uma duração de {novo_evento.calcular_duracao()}")
@@ -222,7 +222,7 @@ class Agenda:
                 
                 confirmacao = None
                 while confirmacao == None:
-                    print(f"\nO {cargos[atributos["cargo"]]} chamado {atributos["nome"]}, com matrícula {atributos["matricula"]} e contato {atributos["contato"]} será adicionado ao sistema")
+                    print(f"\nO {cargos[atributos['cargo']]} chamado {atributos['nome']}, com matrícula {atributos['matricula']} e contato {atributos['contato']} será adicionado ao sistema")
                     print("Confirma a operação?\n")
                     print("1. Adicionar usuário")
                     print("2. Editar informção\n")
@@ -295,7 +295,7 @@ class Agenda:
                     if eventos_criados["area"] != []:
                         print(f'--> Áreas de interesse: {",".join(evento for evento in eventos_criados["area"])}')
                     
-                    print(f"--> {eventos_criados["numero_vagas"] - len(eventos_criados["participantes"])} vagas disponíveis\n")
+                    print(f"--> {eventos_criados['numero_vagas'] - len(eventos_criados['participantes'])} vagas disponíveis\n")
                     contagem += 1
                 print("Escolha uma opção para receber mais detalhes sobre o evento\n(escolha 0 para voltar ao menu)")
                 try:
@@ -327,7 +327,7 @@ class Agenda:
                     for evento_ja_cadastrado in ja_cadastrado.keys():
                         data_ja_cadastrada = self.banco_eventos.get_objeto_index(evento_ja_cadastrado)
                         if datetime(data_ja_cadastrada['ano'],data_ja_cadastrada['mes'], data_ja_cadastrada['dia']) == evento_escolhido.retornar_datetime():
-                            print(f'Esse evento ocorre no mesmo dia que "{data_ja_cadastrada['titulo']}" o qual você está cadastrado')
+                            print(f'Esse evento ocorre no mesmo dia que "{data_ja_cadastrada["titulo"]}" o qual você está cadastrado')
                             print(f"{data_ja_cadastrada['titulo']} começa às {data_ja_cadastrada['start_hour']} e termina às {data_ja_cadastrada['finish_hour']}\n")
                             horario_colide = True
                     if horario_colide:
